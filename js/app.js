@@ -64,8 +64,7 @@ function app() {
       if (this.data?.length > 0) {
         this.filterFields = Object.keys(this.data[0])
         this.sortKey = this.filterFields[0]
-        this.uniqueColumn = this.filterFields[0]        
-        this.selectedColumn = this.filterFields[(this.data?.length > 1) ? 1 : 0]
+        this.uniqueColumn = this.filterFields[0]                
       }
 
     },        
