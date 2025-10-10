@@ -1,3 +1,4 @@
+// mundane Google sheet data extraction solved by Copilot and not afraid to admit it
 async function getSheetData(url) {
 
   const response = await fetch(url);

@@ -67,3 +67,10 @@ so, to create new datasets:
   * ensure that the `hidden-sheetURL` column contains that copied URL 
 
 by following those steps, the pages will automagically generate in the app!
+
+## credits
+
+with help from
+
+* [zulfikarditya's blog post](https://medium.com/@zulfikarditya/alpine-js-the-minimalist-javascript-framework-for-modern-web-development-839382997988) 
+* github copilot (for help in extracting google sheet data in `js/utils.js`)
