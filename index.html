@@ -52,10 +52,11 @@
           <p x-text="dataset['description']"></p>          
 
           <div class="flex my-4 d-flex gap-2">
-                      
-            <input id="search-query" type="text" placeholder="search by" x-model="search">
+            <span>search</span>
+            <input id="search-query" type="text" placeholder="by" x-model="search">
+            <span>in</span>
             <select id="search-filter" x-model="selectedColumn">
-              <option value="">all fields</option>
+              <option value="" selected>all fields</option>
               <template 
                 x-for="field in filterFields.filter(f => !f.includes('hidden'))" 
                 :key="'select-' + field"
