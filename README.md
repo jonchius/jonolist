@@ -66,7 +66,7 @@ so, to create new datasets:
 * include this new worksheet in the "library" worksheet
   * ensure that the `hidden-sheetURL` column contains that copied URL 
 
-by following those steps, the pages will automagically generate in the app!
+then, any update on the google sheets will result in a live update of the webpages!
 
 ## credits
 
