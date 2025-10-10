@@ -1,6 +1,6 @@
 # jonolist
 
-a flexible list component for Alpine.js that allows searching and sorting, as well as filtering by column, then displays the data in the form of a table
+a flexible list applet for Alpine.js that allows searching and sorting, as well as filtering by column, then displays the data in the form of a table
 
 we can use either a JavaScript array with objects (with key-value pairs)
 
@@ -21,6 +21,7 @@ a **dataset** refers to a list
 in config.js:
 
 (1) modify the `rawData` variable according to taste
+
 (2) add/uncomment this line out: 
 
 ```
@@ -28,6 +29,7 @@ const librarySheetURL = ''
 ```
 
 (3) modify the `appName` variable if desired
+
 (4) upload the contents to any web server (no build system required!)
 
 ### using Google sheets for easy data entry and editing
@@ -50,12 +52,11 @@ const librarySheetURL = ''
 
 in config.js:
 
-(0) leave the `rawData` variable alone
-(1) modify the `librarySheetURL` variable to a Google sheet
+* leave the `rawData` variable alone and modify the `librarySheetURL` variable to a Google sheet
 
 // after this, no more "coding": just use Google sheets!
 
-so, to create new pages: 
+so, to create new datasets: 
 
 * start a new worksheet with headers and data rows
 * on the Google worksheet, use _File > Share > Publish to web_ (a modal should appear)
