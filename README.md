@@ -56,7 +56,9 @@ in config.js:
 
 // after this, no more "coding": just use Google sheets!
 
-so, to create new datasets: 
+## updating in Google sheets
+
+so, to create new datasets, go back to the Google sheets workbook (or start a new one): 
 
 * start a new worksheet with headers and data rows
 * on the Google worksheet, use _File > Share > Publish to web_ (a modal should appear)

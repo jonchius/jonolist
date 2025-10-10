@@ -56,7 +56,7 @@
             <input id="search-query" type="text" placeholder="by" x-model="search">
             <span>in</span>
             <select id="search-filter" x-model="selectedColumn">
-              <option value="" selected>all fields</option>
+              <option value="" selected>all columns</option>
               <template 
                 x-for="field in filterFields.filter(f => !f.includes('hidden'))" 
                 :key="'select-' + field"
