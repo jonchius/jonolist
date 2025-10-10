@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <title></title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.0.2/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="css/style.css">
+  </head>
+
+  <body>
+
+    <div x-data="app()" x-init="init()">
+
+      <nav class="navbar navbar-expand-lg navbar-light sticky-top bg-dark bg-gradient">
+        <div class="container d-flex justify-content-between p-2">          
+          <h1><a href="index.html" class="h1 text-white" x-text="appName"></a></h1>          
+          <select 
+            id="dataset-selector" 
+            :value="window.location.hash.replace('#', '')" 
+            @change="window.location.hash = $event.target.value; location.reload();
+          ">
+            <option selected>select dataset...</option>
+            <template 
+              x-for="(value, key) in library" 
+              :key="'select-' + key"
+            >
+              <option 
+                :value="value['link']" 
+                x-text="value['name']"
+              ></option>
+            </template>
+          </select>      
+        </div>
+      </nav>
+
+      <main class="container my-5">
+
+        <template x-if="loading === true">
+      
+          <div class="spinner-border text-primary text-center" role="status">
+            <span class="visually-hidden">Loading...</span>          
+          </div>        
+        
+        </template>
+    
+        <div x-show="loading === false && filteredData !== null && filteredData.length > 0">                  
+
+          <h2 class="h1" x-text="dataset['name']"></h2>
+
+          <p x-text="dataset['description']"></p>          
+
+          <div class="flex my-4 d-flex gap-2">
+                      
+            <input id="search-query" type="text" placeholder="search by" x-model="search">
+            <select id="search-filter" x-model="selectedColumn">
+              <template 
+                x-for="field in filterFields.filter(f => !f.includes('hidden'))" 
+                :key="'select-' + field"
+              >
+                <option :value="field" x-text="field"></option>
+              </template>
+            </select>
+            
+          </div>
+
+          <table id="result-table" class="table table-hover">
+            <thead class="thead-dark sticky-top bg-dark bg-gradient text-white">
+              <tr>
+                <template 
+                  x-for="field in filterFields.filter(f => !f.includes('hidden'))" 
+                  :key="'th-' + field"
+                >
+                  <th 
+                    tabindex="0" 
+                    @click="sort(field)" 
+                    @keydown.enter="sort(field)" 
+                    class="cursor-pointer"
+                    :class="sortKey === field ? 'bg-primary' : ''
+                  ">
+                    <span x-text="field"></span>
+                    <span x-show="sortKey === field">
+                      <span x-show="sortDirection === 'asc'">▲</span>
+                      <span x-show="sortDirection === 'desc'">▼</span>
+                    </span>
+                  </th>
+                </template>
+              </tr>
+            </thead>
+            <tbody>
+              <template 
+                x-for="(item, index) in filteredData" 
+                :key="'tr-' + index"
+              >
+                <tr
+                  :class="filterFields.map(field => String(item[field])).some(cell => cell.includes('#')) ? 'cursor-pointer' : ''"
+                  @click="
+                    let link = filterFields.map(field => String(item[field])).find(cell => cell.includes('#'))
+                    if (link) window.open(link, '_top')
+                  "
+                >
+                  <template 
+                    x-for="field in filterFields.filter(f => !f.includes('hidden'))"
+                    :key="'td' + '-' + field"
+                  >                
+                    <td>
+                      <template x-if="String(item[field]).includes('https://') || String(item[field]).includes('#')">
+                        <a :href="item[field]" class="btn btn-success py-0" rel="noopener" x-text="'go'"></a>
+                      </template>
+                      <template x-if="!(String(item[field]).includes('https://') || String(item[field]).includes('#'))">
+                        <span x-text="item[field]"></span>
+                      </template>
+                    </td>
+                  </template>
+                </tr>
+              </template>
+            </tbody>
+          </table>
+          
+        </div>
+
+        <div x-show="loading === false && filteredData === null" x-cloak>
+                  
+          <h1>404 (TABLE NOT FOUND)</h1>                              
+          
+        </div>
+
+      </main>
+
+      <footer class="bg-dark bg-gradient text-white">
+        <div class="container text-center py-5">
+          <small>
+            a <a class="link-info text-decoration-none" href="https://joncoded.com" target="_blank">jonchius/joncoded</a> production
+          </small>
+        </div>
+      </footer>
+
+    </div>
+
+    <script src="js/utils.js" defer></script>
+    <script src="js/config.js" defer></script>    
+    <script src="js/app.js" defer></script> 
+    <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.0.2/js/bootstrap.bundle.min.js"></script>
+    <script>
+      window.addEventListener('hashchange', () => location.reload());
+    </script>
+
+  </body>
+
+</html>

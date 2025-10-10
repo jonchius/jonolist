@@ -1,0 +1,16 @@
+{
+  "name": "jonolist",
+  "version": "1.0.0",
+  "description": "a flexible list component for Alpine.js that allows searching and sorting, as well as filtering by column, then displays the data in the form of a table",
+  "main": "app.js",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "vite": "^7.1.8"
+  }
+}
