@@ -107,10 +107,10 @@
                     :key="'td' + '-' + field"
                   >                
                     <td>
-                      <template x-if="String(item[field]).includes('https://') || String(item[field]).includes('#')">
-                        <a :href="item[field]" class="btn btn-success py-0" rel="noopener" x-text="'go'"></a>
+                      <template x-if="String(item[field]).includes('https://') || String(item[field]).includes('index.html#')">
+                        <a :href="item[field]" class="btn btn-success py-0" rel="noopener" x-text="'view'"></a>
                       </template>
-                      <template x-if="!(String(item[field]).includes('https://') || String(item[field]).includes('#'))">
+                      <template x-if="!(String(item[field]).includes('https://') || String(item[field]).includes('index.html#'))">
                         <span x-text="item[field]"></span>
                       </template>
                     </td>

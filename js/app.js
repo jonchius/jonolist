@@ -36,7 +36,7 @@ function app() {
         // if library originates from Google sheets
         this.library = JSON.parse(JSON.stringify(await libraryData()))
         // get the metadata of the current page (title, description, category, etc.)
-        this.dataset = this.library.find(item => item.link === window.location.hash)        
+        this.dataset = this.library.find(item => item.link.replace("index.html", "") === window.location.hash)        
       }
 
       // blank 404 page for an invalid hash (i.e. no data) 
