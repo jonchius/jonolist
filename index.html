@@ -92,7 +92,7 @@
             </thead>
             <tbody>
               <template 
-                x-for="(item, index) in filteredData" 
+                x-for="(item, index) in filteredData.filter(f => f['hidden-published'] !== 'no')" 
                 :key="'tr-' + index"
               >
                 <tr
