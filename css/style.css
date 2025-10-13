@@ -13,14 +13,6 @@ h1, h2, h3, h4, .h1, .h2, .h3, .h4 {
   font-weight: 700;
 }
 
-a.h1 {
-  text-decoration: none;
-}
-
-a.h1:hover {
-  text-decoration: underline;
-}
-
 .cursor-pointer {
   cursor: pointer;  
 }
@@ -29,26 +21,15 @@ a.h1:hover {
   display: none !important; 
 }
 
-/* custom adjustments for sticky header */
+/* bootstrap override for sticky table header with responsive table */
 
-.thead-dark.sticky-top {
-  z-index: 1020;
+.table-responsive {
+  max-height: 400px;
+  overflow-y: auto;
 }
 
-@media screen and (min-width: 992px) {
-  .thead-dark.sticky-top {
-    top: 76px;
-  }
-}
-
-@media screen and (min-width: 768px) and (max-width: 992px) {
-  .thead-dark.sticky-top {
-    top: 74px;
-  }
-}
-
-@media screen and (max-width: 768px) {
-  .thead-dark.sticky-top {
-    top: 72px;
-  }
+.table-fixed-header thead th {
+  position: sticky;
+  top: 0;
+  z-index: 1;
 }

@@ -47,7 +47,7 @@ function app() {
 
       // update <title> tag according to the dataset metadata
       const pageName = (this.dataset) ? this.dataset['name'] : ""
-      document.title = pageName ? pageName + ' - ' : '' + appName
+      document.title = (pageName ? pageName + ' - ' : '404 - ') + appName
 
       // pre-load the table data 
       if (this.dataset['hidden-sheetURL'] === 'none' || this.dataset['hidden-sheetURL'] === undefined) {
