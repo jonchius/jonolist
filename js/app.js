@@ -63,7 +63,7 @@ function app() {
       // populate ui defaults
       if (this.data?.length > 0) {
         this.filterFields = Object.keys(this.data[0])
-        this.sortKey = this.filterFields[0]
+        this.sortKey = this.dataset['hidden-sortKey'] ? String(this.dataset['hidden-sortKey']) : this.filterFields[0]
         this.uniqueColumn = this.filterFields[0]
         this.sortDirection = this.dataset['hidden-sortDirection'] ?? 'asc'
       }
