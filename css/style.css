@@ -24,7 +24,8 @@ h1, h2, h3, h4, .h1, .h2, .h3, .h4 {
 /* bootstrap override for sticky table header with responsive table */
 
 .table-responsive {
-  max-height: 400px;
+  min-height: 75vh;
+  max-height: 800px;
   overflow-y: auto;
 }
 
