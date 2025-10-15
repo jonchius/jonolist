@@ -94,16 +94,31 @@ function app() {
         let valA = a[this.sortKey]
         let valB = b[this.sortKey]
 
-        // cast numbers
+        // cast dates
+        let dateA = Date.parse(valA)
+        let dateB = Date.parse(valB)
+
+        // determine if dates
+        let isDateA = !isNaN(dateA)
+        let isDateB = !isNaN(dateB)
+        
+        // compare dates
+        if (isDateA && isDateB) {
+          if (dateA < dateB) return -1 * ordering
+          if (dateA > dateB) return 1 * ordering
+          return 0
+        }
+        
+        // otherwise, cast numbers
         let numA = parseFloat(valA)
         let numB = parseFloat(valB)
 
-        // check if both are numbers
+        // determine if both are numbers
         let bothNumbers = !isNaN(numA) && !isNaN(numB)
 
         if (bothNumbers) {
 
-          // if both are numbers, compare as numbers (so that 10 doesn't come before 2, etc.)
+          // compare numbers
           if (numA < numB) return -1 * ordering
           if (numA > numB) return 1 * ordering
           return 0
