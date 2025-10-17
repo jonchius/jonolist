@@ -46,7 +46,7 @@ const librarySheetURL = ''
   * `hidden-sheetURL` = the URL of the Google spreadsheet
 * on the Google worksheet, use _File > Share > Publish to web_ (a modal should appear)
   * instead of _Entire document_, select the "library" worksheet 
-  * then, in the next dropdown, instead of "Web page", select _Comma-separated values (.csv)_
+  * then, in the next dropdown, instead of "Web page", select _Tab-separated values (.tsv)_
   * copy the URL located below the drop-down menus
 * use the "library" sheet to update the library
 
@@ -63,7 +63,7 @@ so, to create new datasets, go back to the Google sheets workbook (or start a ne
 * start a new worksheet with headers and data rows
 * on the Google worksheet, use _File > Share > Publish to web_ (a modal should appear)
   * instead of _Entire document_, select the "library" worksheet 
-  * then, in the next dropdown, instead of "Web page", select _Comma-separated values (.csv)_
+  * then, in the next dropdown, instead of "Web page", select _Tab-separated values (.tsv)_
   * copy the URL located below the drop-down menus
 * include this new worksheet in the "library" worksheet
   * ensure that the `hidden-sheetURL` column contains that copied URL 
