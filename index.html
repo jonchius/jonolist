@@ -32,7 +32,7 @@
     
         <div x-show="loading === false && filteredData !== null && filteredData.length >= 0">                  
 
-          <h2 class="h1" x-text="dataset['name']"></h2>
+          <h2 class="h1" x-text="dataset['emoji'] + ' ' + dataset['name']"></h2>
 
           <p x-text="dataset['description']"></p>          
 
