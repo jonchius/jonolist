@@ -8,27 +8,27 @@ async function getSheetData(url) {
   const headers = rows[0].split(delimiter).map(header => header.trim())
   return rows.slice(1).map(row => {
     const values = row.split(delimiter).map(value => value.trim())
-    return headers.reduce((obj, header, index) => {      
+    return headers.reduce((obj, header, index) => {
       obj[header] = cleanQuotes(values[index]) || ''
-      return obj;
-    }, {});
+      return obj
+    }, {})
   });
 
 }
 
 // clean up quotation marks because Google Sheets exports a lot of unnecessary quotes
 function cleanQuotes(value) {
-  
+
   if (value === null || value === undefined) return ''
-  
+
   let str = String(value).trim()
-    
+
   // remove multiple wrapping quotation marks
   while (
     (str.startsWith('"') || str.startsWith("'")) &&
-    (str.endsWith('"') || str.endsWith("'"))    
-  ) {        
-    const inner = str.slice(1, -1).trim();
+    (str.endsWith('"') || str.endsWith("'"))
+  ) {
+    const inner = str.slice(1, -1).trim()
     if (
       !(
         (inner.startsWith('"') || inner.startsWith("'")) &&
@@ -49,7 +49,7 @@ function cleanQuotes(value) {
     (str.startsWith('"') || str.startsWith("'")) &&
     (str.endsWith('"') || str.endsWith("'"))
   ) {
-    str = str.slice(1, -1).trim();
+    str = str.slice(1, -1).trim()
   }
 
   return str
