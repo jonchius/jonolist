@@ -17,29 +17,29 @@ function app() {
     filterFields: [],
     data: [],
     uniqueColumn: '',
-    library: [], 
+    library: [],
     dataset: {},
 
     // initialize before load
     async init() {
 
-      // get page metadata 
+      // get page metadata
       if (librarySheetURL === '') {
         // if library originates from rawData in config.js
         this.library = Object.keys(rawData).reduce((lib, key) => {
           lib[key] = { link: '#' + key, name: key }
           return lib
-        }, {})        
+        }, {})
         // metadata for rawData pages will only include the title
         this.dataset = { "name" : hashurl }
       } else {
         // if library originates from Google sheets
         this.library = JSON.parse(JSON.stringify(await libraryData()))
         // get the metadata of the current page (title, description, category, etc.)
-        this.dataset = this.library.find(item => item.link.replace("index.html", "") === window.location.hash)        
+        this.dataset = this.library.find(item => item.link.replace("index.html", "").toLowerCase() === window.location.hash.toLowerCase())
       }
 
-      // blank 404 page for an invalid hash (i.e. no data) 
+      // blank 404 page for an invalid hash (i.e. no data)
       if (!this.dataset) {
         this.loading = false
         this.data = []
@@ -49,7 +49,7 @@ function app() {
       const pageName = (this.dataset) ? this.dataset['name'] : ""
       document.title = (pageName ? pageName + ' - ' : '404 - ') + appName
 
-      // pre-load the table data 
+      // pre-load the table data
       if (this.dataset['hidden-sheetURL'] === 'none' || this.dataset['hidden-sheetURL'] === undefined) {
         // from static rawData
         this.data = rawData[hashurl]
@@ -59,7 +59,7 @@ function app() {
         this.data = await getSheetData(this.dataset['hidden-sheetURL'])
         this.loading = false
       }
-      
+
       // populate ui defaults
       if (this.data?.length > 0) {
         this.filterFields = Object.keys(this.data[0])
@@ -68,7 +68,7 @@ function app() {
         this.sortDirection = this.dataset['hidden-sortDirection'] ?? 'asc'
       }
 
-    },        
+    },
 
     // search by query in either all fields or a selected field
     get filteredData() {
@@ -101,14 +101,14 @@ function app() {
         // determine if dates
         let isDateA = !isNaN(dateA)
         let isDateB = !isNaN(dateB)
-        
+
         // compare dates
         if (isDateA && isDateB) {
           if (dateA < dateB) return -1 * ordering
           if (dateA > dateB) return 1 * ordering
           return 0
         }
-        
+
         // otherwise, cast numbers
         let numA = parseFloat(valA)
         let numB = parseFloat(valB)
