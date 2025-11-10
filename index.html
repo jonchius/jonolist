@@ -97,7 +97,7 @@
                           <a :href="item[field]" :target="String(item[field]).includes('https://') ? '_blank' : '_top'" class="btn btn-success py-0" rel="noopener" x-text="'view'"></a>
                         </template>
                         <template x-if="!(String(item[field]).includes('https://') || String(item[field]).includes('index.html#'))">
-                          <span x-text="item[field]"></span>
+                          <span :class="(field.includes('name') || field.includes('title')) ? 'fw-bold fs-5' : ''" x-text="item[field]"></span>
                         </template>
                       </td>
                     </template>
