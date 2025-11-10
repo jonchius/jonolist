@@ -2,8 +2,8 @@
 // handles the filtering and sorting of list data for display in a table
 */
 
-const libraryData = async () => { 
-  return await getSheetData(librarySheetURL) || [] 
+const libraryData = async () => {
+  return await getSheetData(librarySheetURL) || []
 }
 
 function app() {

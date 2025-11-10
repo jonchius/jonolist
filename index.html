@@ -15,8 +15,8 @@
     <div x-data="app()" x-init="init()">
 
       <nav class="navbar navbar-expand-lg navbar-light bg-dark bg-gradient">
-        <div class="container d-flex justify-content-between align-items-center p-2">          
-          <span><a href="index.html" class="h1 text-white text-decoration-none" x-text="appName"></a></span>          
+        <div class="container d-flex justify-content-between align-items-center p-2">
+          <span><a href="index.html" class="h1 text-white text-decoration-none" x-text="appName"></a></span>
           <span><a href="index.html" class="text-white text-decoration-none"><span aria-hidden="true">🏠</span> home</a></span>
         </div>
       </nav>
@@ -24,18 +24,18 @@
       <main class="container my-5">
 
         <template x-if="loading === true">
-      
+
           <div class="spinner-border text-primary text-center" role="status">
-            <span class="visually-hidden">Loading...</span>          
-          </div>        
-        
+            <span class="visually-hidden">Loading...</span>
+          </div>
+
         </template>
-    
-        <div x-show="loading === false && filteredData !== null && filteredData.length >= 0">                  
+
+        <div x-show="loading === false && filteredData !== null && filteredData.length >= 0">
 
           <h2 class="h1" x-text="dataset['emoji'] + ' ' + dataset['name']"></h2>
 
-          <p x-text="dataset['description']"></p>          
+          <p x-text="dataset['description']"></p>
 
           <div class="flex flex-wrap w-100 my-4 d-flex gap-2">
             <span>search</span>
@@ -43,27 +43,27 @@
             <span>in</span>
             <select id="search-filter" x-model="selectedColumn">
               <option value="" selected>all columns</option>
-              <template 
-                x-for="field in filterFields.filter(f => !f.includes('hidden'))" 
+              <template
+                x-for="field in filterFields.filter(f => !f.includes('hidden'))"
                 :key="'select-' + field"
               >
                 <option :value="field" x-text="field"></option>
               </template>
-            </select>            
+            </select>
           </div>
-                    
+
           <div class="table-responsive table-fixed-header">
             <table id="result-table" class="table table-hover">
               <thead class="thead-dark sticky-top bg-dark bg-gradient text-white">
                 <tr>
-                  <template 
-                    x-for="field in filterFields.filter(f => !f.includes('hidden'))" 
+                  <template
+                    x-for="field in filterFields.filter(f => !f.includes('hidden'))"
                     :key="'th-' + field"
                   >
-                    <th 
-                      tabindex="0" 
-                      @click="sort(field)" 
-                      @keydown.enter="sort(field)" 
+                    <th
+                      tabindex="0"
+                      @click="sort(field)"
+                      @keydown.enter="sort(field)"
                       class="cursor-pointer"
                       :class="sortKey === field ? 'bg-primary' : ''
                     ">
@@ -77,8 +77,8 @@
                 </tr>
               </thead>
               <tbody>
-                <template 
-                  x-for="(item, index) in filteredData.filter(i => i['hidden-published'] !== 'no')" 
+                <template
+                  x-for="(item, index) in filteredData.filter(i => i['hidden-published'] !== 'no')"
                   :key="'tr-' + index"
                 >
                   <tr
@@ -88,11 +88,13 @@
                       if (link) window.open(link, link.includes('https://') ? '_blank' : '_self')
                     "
                   >
-                    <template 
+                    <template
                       x-for="field in filterFields.filter(f => !f.includes('hidden'))"
                       :key="'td' + '-' + field"
-                    >                
-                      <td :class="field.includes('date') ? 'text-nowrap' : ''">
+                    >
+                      <td :class="
+                        field.includes('date') ? 'text-nowrap' : ''
+                      ">
                         <template x-if="String(item[field]).includes('https://') || String(item[field]).includes('index.html#')">
                           <a :href="item[field]" :target="String(item[field]).includes('https://') ? '_blank' : '_top'" class="btn btn-success py-0" rel="noopener" x-text="'view'"></a>
                         </template>
@@ -104,15 +106,15 @@
                   </tr>
                 </template>
               </tbody>
-            </table>        
+            </table>
           </div>
 
         </div>
 
         <div x-show="loading === false && filteredData === null" x-cloak>
-                  
-          <h1>404 (TABLE NOT FOUND)</h1>                              
-          
+
+          <h1>404 (TABLE NOT FOUND)</h1>
+
         </div>
 
       </main>
