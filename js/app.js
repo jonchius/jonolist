@@ -101,9 +101,9 @@ function app() {
         let dateB = Date.parse(valB)
 
         // determine if dates
-        let isDateA = !isNaN(dateA)
-        let isDateB = !isNaN(dateB)
-
+        let isDateA = dateA instanceof Date
+        let isDateB = dateB instanceof Date
+      
         // compare dates
         if (isDateA && isDateB) {
           if (dateA < dateB) return -1 * ordering
