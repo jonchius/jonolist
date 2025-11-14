@@ -6,6 +6,11 @@ const libraryData = async () => {
   return await getSheetData(librarySheetURL) || []
 }
 
+function isValidDateFormat(dateString) {
+  const regex = /^\d{4}-\d{2}-\d{2}$/;
+  return regex.test(dateString);
+}
+
 function app() {
 
   return {
@@ -97,12 +102,12 @@ function app() {
         let valB = b[this.sortKey]
 
         // cast dates
-        let dateA = Date.parse(valA)
-        let dateB = Date.parse(valB)
+        let dateA = valA
+        let dateB = valB
 
         // determine if dates
-        let isDateA = dateA instanceof Date
-        let isDateB = dateB instanceof Date
+        let isDateA = isValidDateFormat(dateA)
+        let isDateB = isValidDateFormat(dateB)
       
         // compare dates
         if (isDateA && isDateB) {
